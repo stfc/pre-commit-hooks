@@ -1,0 +1,29 @@
+# local IDE settings:
+.vscode
+.idea
+
+# macOS:
+.DS_STORE
+
+# Jupyter notebooks:
+.ipynb_checkpoints
+
+# python cache:
+__pycache__
+
+# build artifacts:
+build/
+dist/
+*.egg-info
+
+# sphinx doc build artifacts:
+doc/_build
+
+# mypy:
+.mypy_cache
+
+# tox:
+.tox
+.eggs
+AUTHORS
+ChangeLog

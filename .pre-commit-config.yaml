@@ -1,0 +1,55 @@
+# See https://pre-commit.com for more information
+# See https://pre-commit.com/hooks.html for more hooks
+repos:
+    - repo: local
+      hooks:
+        - id: check-missing-requirements
+          name: Check for missing requirements from environment
+          entry: python -m hooks.check_missing_requirements
+          language: system
+          files: '^requirements.*\.txt$'
+          always_run: true
+        - id: check-mypy-import-errors
+          name: Check for mypy import errors
+          entry: python -m hooks.check_mypy_import_errors
+          language: system
+          files: '.py$'
+          pass_filenames: false
+        - id: check-pylint-import-errors
+          name: Check for pylint import errors
+          entry: python -m hooks.check_pylint_import_errors
+          language: system
+          files: '.py$'
+          pass_filenames: false
+    - repo: https://github.com/pre-commit/pre-commit-hooks
+      rev: v4.0.1
+      hooks:
+        - id: check-yaml
+        - id: trailing-whitespace
+        - id: end-of-file-fixer
+        - id: requirements-txt-fixer
+        - id: check-added-large-files
+          name: check-add-large-files (notebooks)
+          files: \.ipynb$
+          args: [ '--maxkb=1000' ]
+        - id: check-added-large-files
+          name: check-add-large-files (images)
+          files: \.(jpg|png|bmp|tif)$
+          args: [ '--maxkb=1000' ]
+        - id: check-added-large-files
+          name: check-add-large-files (not notebooks or images)
+          files: ^.+$(?<!\.jpg)(?<!\.png)(?<!\.ipynb)(?<!\.bmp)(?<!\.tif)
+          args: [ '--maxkb=500' ]
+    - repo: https://github.com/psf/black
+      rev: 21.6b0
+      hooks:
+        - id: black
+          language_version: python3
+    - repo: https://github.com/pycqa/isort
+      rev: 5.9.1
+      hooks:
+        - id: isort
+    - repo: https://gitlab.com/pycqa/flake8
+      rev: 3.9.2
+      hooks:
+        - id: flake8
