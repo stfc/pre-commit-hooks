@@ -1,26 +1,12 @@
 # See https://pre-commit.com for more information
 # See https://pre-commit.com/hooks.html for more hooks
 repos:
-    - repo: local
+    - repo: https://gitlab.stfc.ac.uk/HDS/pre-commit-hooks
+      rev: v0.1.0
       hooks:
         - id: check-missing-requirements
-          name: Check for missing requirements from environment
-          entry: python -m hooks.check_missing_requirements
-          language: system
-          files: '^requirements.*\.txt$'
-          always_run: true
         - id: check-mypy-import-errors
-          name: Check for mypy import errors
-          entry: python -m hooks.check_mypy_import_errors
-          language: system
-          files: '.py$'
-          pass_filenames: false
         - id: check-pylint-import-errors
-          name: Check for pylint import errors
-          entry: python -m hooks.check_pylint_import_errors
-          language: system
-          files: '.py$'
-          pass_filenames: false
     - repo: https://github.com/pre-commit/pre-commit-hooks
       rev: v4.0.1
       hooks:
