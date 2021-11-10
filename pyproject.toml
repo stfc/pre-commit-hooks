@@ -1,0 +1,82 @@
+[tool.poetry]
+name = "hooks"
+version = "0.1.0"
+description = "Custom pre-commit hooks for use within our projects"
+authors = ["Tom Collingwood <tom.collingwood@stfc.ac.uk>"]
+license = "MIT"
+repository = "https://gitlab.stfc.ac.uk/HDS/pre-commit-hooks"
+
+keywords = [
+    "pre-commit",
+    "hooks"
+]
+
+[tool.poetry.scripts]
+check-missing-requirements = "hooks.check_missing_requirements:main"
+check-mypy-import-errors = "hooks.check_mypy_import_errors:main"
+check-pylint-import-errors = "hooks.check_pylint_import_errors:main"
+
+[tool.poetry.dependencies]
+python = "^3.9"
+mypy = "^0.910"
+mypy-extensions = "^0.4.3"
+regex = "^2021.11.10"
+requirements-parser = "^0.2.0"
+pylint = "^2.11.1"
+
+[tool.poetry.dev-dependencies]
+black = "^21.10b0"
+flake8 = "^4.0.1"
+isort = "^5.10.1"
+pre-commit = "^2.15.0"
+Sphinx = "^4.2.0"
+sphinx-rtd-theme = "^1.0.0"
+tox = "^3.24.4"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.mypy]
+warn_return_any = true
+warn_unused_configs = true
+warn_redundant_casts = true
+
+[[tool.mypy.overrides]]
+module = [
+    "regex",
+    "pylint",
+    "requirements",
+    ]
+
+ignore_missing_imports = true
+
+[tool.pylint.master]
+persistent="yes"
+
+[tool.pylint.messages_control]
+max-line-length = 88
+disable = ["wrong-hanging-indentation", "bad-whitespace",]
+output-format = "colorized"
+
+[tool.pylint.basic]
+good-names = ["i", "j", "k", "e", "df", "n", "t",]
+
+[tool.isort]
+profile = "black"
+skip = ["build_seq.py", "conf.py"]
+float_to_top = true
+
+[tool.tox]
+legacy_tox_ini = """
+[tox]
+skipsdist = true
+envlist = py{{''.join(cookiecutter.python_version.split('.')[:2])}}
+
+[testenv]
+whitelist_externals = poetry
+passenv = RUNNER PLATFORM_ENVVAR
+commands =
+    poetry install -v
+    poetry run python -m unittest
+"""

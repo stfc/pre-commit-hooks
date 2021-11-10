@@ -1,0 +1,16 @@
+[flake8]
+max-line-length = 88
+exclude =
+    .git
+    __pycache__
+    old
+    build
+    dist
+    doc
+    .eggs
+    .ipynb_checkpoints
+statistics = 1
+doctests = 1
+ignore = E203, W503
+# E203 (whitespace before ':') - let black handle this
+# W503 (line break before binary operator) - let black handle this
