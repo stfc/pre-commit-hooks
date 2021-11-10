@@ -25,6 +25,7 @@ before_script:
   - poetry --version
   - poetry config virtualenvs.in-project true # create env in .venv in project dir
   - git config --global url."https://gitlab-ci-token:${CI_JOB_TOKEN}@gitlab.stfc.ac.uk/".insteadOf https://gitlab.stfc.ac.uk/
+  - poetry install
 
 
 stages:
@@ -35,7 +36,6 @@ stages:
 lint:
   stage: lint
   script:
-  - poetry install
   - poetry run pylint --errors-only hooks
   - poetry run flake8 hooks
   - poetry run isort --check hooks  # import sorting
@@ -45,14 +45,12 @@ lint:
 lint_report:
   stage: lint
   script:
-    - poetry install
     - poetry run pylint -r y --exit-zero hooks
 
 # test the documentation builds for commits outside main branch:
 test_doc:
   stage: docs
   script:
-  - poetry install --no-dev
   - cd doc
   - poetry run make html
   artifacts:
@@ -65,7 +63,6 @@ test_doc:
 pages:
   stage: docs
   script:
-  - poetry install --no-dev
   - cd doc
   - poetry run make html
   - mv doc/_build/html/ public/
