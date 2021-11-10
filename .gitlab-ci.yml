@@ -19,12 +19,11 @@ cache:
     - .venv/
 
 before_script:
-  - python -V  # Print out python version for debugging
-  - python -m pip install --upgrade pip
-  - pip install virtualenv --upgrade
-  - virtualenv .venv
-  - source .venv/bin/activate
+  - python --version
   - pip install --upgrade pip
+  - pip install poetry
+  - poetry --version
+  - poetry config virtualenvs.in-project true # create env in .venv in project dir
   - git config --global url."https://gitlab-ci-token:${CI_JOB_TOKEN}@gitlab.stfc.ac.uk/".insteadOf https://gitlab.stfc.ac.uk/
 
 
@@ -36,25 +35,26 @@ stages:
 lint:
   stage: lint
   script:
-  - pip install -r requirements.txt --upgrade
-  - pylint -E --rcfile=setup.cfg setup.py hooks  # Pylint advanced linting (errors only)
-  - flake8 setup.py hooks  # flake8 basic linting
-  - isort --check setup.py hooks  # import sorting
-  - black --check --diff .  # Black style checking
-  - mypy hooks  # static type checking for type hints
+  - poetry install
+  - poetry run pylint --errors-only hooks
+  - poetry run flake8 hooks
+  - poetry run isort --check hooks  # import sorting
+  - poetry run black --check --diff .  # style formatting
+  - poetry run mypy hooks  # static type checking for type hints
 
 lint_report:
   stage: lint
   script:
-    - pip install -r requirements.txt --upgrade
-    - pylint -r y --rcfile=setup.cfg --exit-zero hooks
+    - poetry install
+    - poetry run pylint -r y --exit-zero hooks
 
 # test the documentation builds for commits outside main branch:
 test_doc:
   stage: docs
   script:
-  - pip install -r requirements.txt --upgrade
-  - python setup.py build_sphinx
+  - poetry install --no-dev
+  - cd doc
+  - poetry run make html
   artifacts:
     paths:
     - doc/_build/html
@@ -65,8 +65,9 @@ test_doc:
 pages:
   stage: docs
   script:
-  - pip install -r requirements.txt --upgrade
-  - python setup.py build_sphinx
+  - poetry install --no-dev
+  - cd doc
+  - poetry run make html
   - mv doc/_build/html/ public/
   artifacts:
     paths:
