@@ -65,7 +65,7 @@ pages:
   script:
   - cd doc
   - poetry run make html
-  - mv doc/_build/html/ public/
+  - mv _build/html/ ../public/
   artifacts:
     paths:
     - public
