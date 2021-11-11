@@ -52,12 +52,12 @@ class CheckMypyImportErrors(Hook):  # pylint: disable=too-few-public-methods
             if "pyproject.toml" in filename:
                 setup_file = PyprojectFile(filename)
                 break
-        if not setup_file:
-            try:
+            elif "setup.cfg" in filename:
                 setup_file = SetupFile("setup.cfg")
-            except FileNotFoundError:
-                print("no setup file found!")
-                return 1
+
+        if not setup_file:
+            print("  No setup file found")
+            return 0
 
         mypy_stdout, mypy_err, _ = mypy.run([setup_file.package_name])
 
