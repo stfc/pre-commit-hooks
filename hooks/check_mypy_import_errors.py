@@ -1,11 +1,10 @@
 """Check and prevent mypy import errors."""
 import sys
 import warnings
-from typing import Set, Union
 
 from mypy import api as mypy
 
-from .utils import Hook, SetupFile
+from .utils import Hook, PyprojectFile, SetupFile
 
 
 def _warning(message, *args, **kwargs):
@@ -31,14 +30,14 @@ class CheckMypyImportErrors(Hook):  # pylint: disable=too-few-public-methods
 
     def run(self) -> int:
         """
-        Fix mypy parameters in ``setup.cfg`` to prevent the CI pipeline giving
-        import errors during linting jobs, as not all packages provide mypy
-        support. To be run from within the top level repo directory.
+        Fix mypy parameters in ``setup.cfg`` or ``pyproject.toml`` to prevent the
+        CI pipeline giving import errors during linting jobs, as not all packages
+        provide mypy support. To be run from within the top level repo directory.
 
         The function applies pylint to this repo, and greps the resultant output
         for any import error messages. The function will then append the bad
-        package/module names to a ``[mypy-<module-name>]`` section of ``setup.cfg``
-        to silence the error in future.
+        package/module names to the relevant config file section to silence
+        the error in future.
 
         This is a known bug with mypy and in this case, silencing the errors
         is the only fix to prevent CI job failure.
@@ -46,7 +45,18 @@ class CheckMypyImportErrors(Hook):  # pylint: disable=too-few-public-methods
         Raises:
             Exception: if mypy fails to run
         """
-        setup_file = SetupFile("setup.cfg")
+        setup_file = None
+        for filename in self.args.filenames:
+            if "pyproject.toml" in filename:
+                setup_file = PyprojectFile(filename)
+                break
+        if not setup_file:
+            try:
+                setup_file = SetupFile("setup.cfg")
+            except FileNotFoundError:
+                print("no setup file found!")
+                return 1
+
         mypy_stdout, mypy_err, _ = mypy.run([setup_file.package_name])
 
         # raise any mypy running errors (i.e. not type hinting issues)
@@ -73,37 +83,8 @@ class CheckMypyImportErrors(Hook):  # pylint: disable=too-few-public-methods
             "  import errors found!\n",
             f"  adding new exceptions to setup.cfg: {', '.join(bad_imports)}",
         )
-
-        def _generate_mypy_ignores(bad_modules: Union[str, Set[str]]) -> str:
-            """Prepares setup.cfg entries to tell mypy to ignore a specific module
-            or modules.
-
-            Args:
-                bad_modules (Union[str, List[str]]): One or more bad modules,
-                    extracted from mypy stdout
-
-            Returns:
-                str: new content to append to setup.cfg to silence the mypy errors
-            """
-            if isinstance(bad_modules, str):
-                bad_modules = set([bad_modules])
-            new_content = "\n".join(
-                {
-                    "\n".join([f"[mypy-{item}]", "ignore_missing_imports = True\n"])
-                    for item in bad_modules
-                }
-            )
-            return new_content
-
-        # generate new config file contents by appending any required ignore
-        # statements:
-        new_config = "\n".join(
-            [setup_file.contents, _generate_mypy_ignores(bad_imports)]
-        )
-
-        # write file to disk:
-        setup_file.write_text(new_config)
-
+        setup_file.add_mypy_ignore(bad_imports)
+        setup_file.save_to_disk()
         return 1
 
 
