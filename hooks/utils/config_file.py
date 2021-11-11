@@ -16,7 +16,7 @@ class ConfigFile(metaclass=abc.ABCMeta):
         self.path = Path(path)
         if not self.path.is_file():
             raise FileNotFoundError(f"Not a valid path: {path}")
-        if self.path.stem != desired_filename:
+        if self.path.name != desired_filename:
             raise ValueError(f"not a {desired_filename} file: {path}")
 
     @property
