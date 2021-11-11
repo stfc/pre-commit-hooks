@@ -35,7 +35,6 @@ class CheckPylintImportErrors(Hook):  # pylint: disable=too-few-public-methods
         # set some pylint options to match the CI pipeline and use the output here:
         pylint_opts = " ".join(
             [
-                "setup.py",  # lint setup.py
                 setup_file.package_name,  # lint package files
                 "--rcfile='setup.cfg'",  # use local config file
                 " --output-format=json",  # return json dict for subsequent parsing
@@ -67,12 +66,8 @@ class CheckPylintImportErrors(Hook):  # pylint: disable=too-few-public-methods
         )
 
         # add bad modules to the pylint ignore section:
-        setup_file.modify_section_line(
-            section_name="[pylint]",
-            line_start="ignored_modules = ",
-            line_end=bad_imports,
-            mode="append",
-        )
+        setup_file.add_pylint_ignore(bad_imports)
+        setup_file.save_to_disk()
         return 1
 
 
