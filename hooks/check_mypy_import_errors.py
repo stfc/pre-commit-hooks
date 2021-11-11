@@ -5,6 +5,7 @@ import warnings
 from mypy import api as mypy
 
 from .utils import Hook, PyprojectFile, SetupFile
+from .utils.config_file import ConfigFile
 
 
 def _warning(message, *args, **kwargs):
@@ -45,7 +46,7 @@ class CheckMypyImportErrors(Hook):  # pylint: disable=too-few-public-methods
         Raises:
             Exception: if mypy fails to run
         """
-        setup_file = None
+        setup_file: ConfigFile = None
         for filename in self.args.filenames:
             if "pyproject.toml" in filename:
                 setup_file = PyprojectFile(filename)
