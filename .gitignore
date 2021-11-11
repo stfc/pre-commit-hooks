@@ -10,6 +10,7 @@
 
 # python cache:
 __pycache__
+*/*.pyc
 
 # build artifacts:
 build/
