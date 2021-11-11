@@ -21,10 +21,17 @@ class PyprojectFile(ConfigFile):
         return str(self.contents["tool"]["poetry"]["name"])
 
     def add_mypy_ignore(self, bad_imports):
-        self.contents["tool"]["mypy"]["overrides"][0]["module"].append(bad_imports)
+        self.contents["tool"]["mypy"]["overrides"][0]["module"].extend(bad_imports)
 
     def add_pylint_ignore(self, bad_imports):
-        return NotImplementedError
+        if "ignored_modules" in self.contents["tool"]["pylint"]["messages_control"]:
+            self.contents["tool"]["pylint"]["messages_control"][
+                "ignored_modules"
+            ].extend(bad_imports)
+        else:
+            self.contents["tool"]["pylint"]["messages_control"][
+                "ignored_modules"
+            ] = bad_imports
 
     def save_to_disk(self):
         self.contents.dump(self.path)

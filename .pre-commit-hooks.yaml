@@ -13,5 +13,4 @@
     name: Check for pylint import errors
     entry: python -m hooks.check_pylint_import_errors
     language: system
-    types: [python]
-    pass_filenames: false
+    files: '^(requirements.*\.txt|pyproject.toml)$'
