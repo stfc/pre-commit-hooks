@@ -7,32 +7,6 @@ optional = false
 python-versions = "*"
 
 [[package]]
-name = "apeye"
-version = "1.1.0"
-description = "Handy tools for working with URLs and APIs."
-category = "main"
-optional = false
-python-versions = ">=3.6.1"
-
-[package.dependencies]
-appdirs = ">=1.4.4"
-domdf-python-tools = ">=2.3.0"
-idna = ">=2.5"
-requests = ">=2.24.0"
-
-[package.extras]
-all = ["cachecontrol[filecache] (>=0.12.6)", "lockfile (>=0.12.2)"]
-limiter = ["cachecontrol[filecache] (>=0.12.6)", "lockfile (>=0.12.2)"]
-
-[[package]]
-name = "appdirs"
-version = "1.4.4"
-description = "A small Python module for determining appropriate platform-specific dirs, e.g. a \"user data dir\"."
-category = "main"
-optional = false
-python-versions = "*"
-
-[[package]]
 name = "astroid"
 version = "2.8.4"
 description = "An abstract syntax tree for Python with inference support."
@@ -45,20 +19,6 @@ lazy-object-proxy = ">=1.4.0"
 typed-ast = {version = ">=1.4.0,<1.5", markers = "implementation_name == \"cpython\" and python_version < \"3.8\""}
 typing-extensions = {version = ">=3.10", markers = "python_version < \"3.10\""}
 wrapt = ">=1.11,<1.14"
-
-[[package]]
-name = "attrs"
-version = "21.2.0"
-description = "Classes Without Boilerplate"
-category = "main"
-optional = false
-python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*"
-
-[package.extras]
-dev = ["coverage[toml] (>=5.0.2)", "hypothesis", "pympler", "pytest (>=4.3.0)", "six", "mypy", "pytest-mypy-plugins", "zope.interface", "furo", "sphinx", "sphinx-notfound-page", "pre-commit"]
-docs = ["furo", "sphinx", "zope.interface", "sphinx-notfound-page"]
-tests = ["coverage[toml] (>=5.0.2)", "hypothesis", "pympler", "pytest (>=4.3.0)", "six", "mypy", "pytest-mypy-plugins", "zope.interface"]
-tests_no_zope = ["coverage[toml] (>=5.0.2)", "hypothesis", "pympler", "pytest (>=4.3.0)", "six", "mypy", "pytest-mypy-plugins"]
 
 [[package]]
 name = "babel"
@@ -118,7 +78,7 @@ uvloop = ["uvloop (>=0.15.2)"]
 name = "certifi"
 version = "2021.10.8"
 description = "Python package for providing Mozilla's CA Bundle."
-category = "main"
+category = "dev"
 optional = false
 python-versions = "*"
 
@@ -134,7 +94,7 @@ python-versions = ">=3.6.1"
 name = "charset-normalizer"
 version = "2.0.7"
 description = "The Real First Universal Charset Detector. Open, modern and actively maintained alternative to Chardet."
-category = "main"
+category = "dev"
 optional = false
 python-versions = ">=3.5.0"
 
@@ -162,19 +122,6 @@ optional = false
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*"
 
 [[package]]
-name = "dist-meta"
-version = "0.3.2"
-description = "Parse and create Python distribution metadata."
-category = "main"
-optional = false
-python-versions = ">=3.6.1"
-
-[package.dependencies]
-domdf-python-tools = ">=3.1.0"
-handy-archives = ">=0.1.0"
-packaging = ">=20.9"
-
-[[package]]
 name = "distlib"
 version = "0.3.3"
 description = "Distribution utilities"
@@ -189,35 +136,6 @@ description = "Docutils -- Python Documentation Utilities"
 category = "dev"
 optional = false
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*"
-
-[[package]]
-name = "dom-toml"
-version = "0.5.0"
-description = "Dom's tools for Tom's Obvious, Minimal Language."
-category = "main"
-optional = false
-python-versions = ">=3.6"
-
-[package.dependencies]
-domdf-python-tools = ">=2.7.0"
-toml = ">=0.10.2"
-
-[[package]]
-name = "domdf-python-tools"
-version = "3.1.0"
-description = "Helpful functions for Python 🐍 🛠️"
-category = "main"
-optional = false
-python-versions = ">=3.6"
-
-[package.dependencies]
-importlib-metadata = {version = ">=3.6.0", markers = "python_version < \"3.9\""}
-natsort = ">=7.0.1"
-typing-extensions = ">=3.7.4.1"
-
-[package.extras]
-all = ["pytz (>=2019.1)"]
-dates = ["pytz (>=2019.1)"]
 
 [[package]]
 name = "filelock"
@@ -246,21 +164,6 @@ pycodestyle = ">=2.8.0,<2.9.0"
 pyflakes = ">=2.4.0,<2.5.0"
 
 [[package]]
-name = "handy-archives"
-version = "0.1.0"
-description = "Some handy archive helpers for Python."
-category = "main"
-optional = false
-python-versions = ">=3.6"
-
-[package.dependencies]
-domdf-python-tools = ">=3.1.0"
-
-[package.extras]
-testing = ["coincidence (>=0.2.0)", "pytest (>=6.0.0)"]
-all = ["coincidence (>=0.2.0)", "pytest (>=6.0.0)"]
-
-[[package]]
 name = "identify"
 version = "2.3.5"
 description = "File identification library for Python"
@@ -275,7 +178,7 @@ license = ["editdistance-s"]
 name = "idna"
 version = "3.3"
 description = "Internationalized Domain Names in Applications (IDNA)"
-category = "main"
+category = "dev"
 optional = false
 python-versions = ">=3.5"
 
@@ -291,7 +194,7 @@ python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*"
 name = "importlib-metadata"
 version = "4.2.0"
 description = "Read metadata from Python packages"
-category = "main"
+category = "dev"
 optional = false
 python-versions = ">=3.6"
 
@@ -382,18 +285,6 @@ optional = false
 python-versions = "*"
 
 [[package]]
-name = "natsort"
-version = "8.0.0"
-description = "Simple yet flexible natural sorting in Python."
-category = "main"
-optional = false
-python-versions = ">=3.6"
-
-[package.extras]
-fast = ["fastnumbers (>=2.0.0)"]
-icu = ["PyICU (>=1.0.0)"]
-
-[[package]]
 name = "nodeenv"
 version = "1.6.0"
 description = "Node.js virtual environment builder"
@@ -405,7 +296,7 @@ python-versions = "*"
 name = "packaging"
 version = "21.2"
 description = "Core utilities for Python packages"
-category = "main"
+category = "dev"
 optional = false
 python-versions = ">=3.6"
 
@@ -517,33 +408,9 @@ typing-extensions = {version = ">=3.10.0", markers = "python_version < \"3.10\""
 name = "pyparsing"
 version = "2.4.7"
 description = "Python parsing module"
-category = "main"
+category = "dev"
 optional = false
 python-versions = ">=2.6, !=3.0.*, !=3.1.*, !=3.2.*"
-
-[[package]]
-name = "pyproject-parser"
-version = "0.4.2"
-description = "Parser for 'pyproject.toml'"
-category = "main"
-optional = false
-python-versions = ">=3.6.1"
-
-[package.dependencies]
-apeye = ">=1.0.0"
-attrs = ">=20.3.0"
-dom-toml = ">=0.4.0"
-domdf-python-tools = ">=2.8.0"
-natsort = ">=7.1.1"
-packaging = ">=20.9"
-shippinglabel = ">=1.0.0"
-toml = ">=0.10.2"
-typing-extensions = ">=3.7.4.3"
-
-[package.extras]
-all = ["click (>=7.1.2)", "consolekit (>=1.2.0)", "docutils (==0.16)", "readme-renderer[md] (>=27.0)"]
-cli = ["click (>=7.1.2)", "consolekit (>=1.2.0)"]
-readme = ["docutils (==0.16)", "readme-renderer[md] (>=27.0)"]
 
 [[package]]
 name = "pytz"
@@ -573,7 +440,7 @@ python-versions = "*"
 name = "requests"
 version = "2.26.0"
 description = "Python HTTP for Humans."
-category = "main"
+category = "dev"
 optional = false
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*, !=3.5.*"
 
@@ -594,24 +461,6 @@ description = "Parses Pip requirement files"
 category = "main"
 optional = false
 python-versions = "*"
-
-[[package]]
-name = "shippinglabel"
-version = "1.0.0"
-description = "Utilities for handling packages."
-category = "main"
-optional = false
-python-versions = ">=3.6.1"
-
-[package.dependencies]
-apeye = ">=1.0.0"
-appdirs = ">=1.4.4"
-dist-meta = ">=0.1.2"
-dom-toml = ">=0.2.2"
-domdf-python-tools = ">=3.1.0"
-packaging = ">=20.9"
-trove-classifiers = ">=2020.10.21"
-typing-extensions = ">=3.7.4.3"
 
 [[package]]
 name = "six"
@@ -786,14 +635,6 @@ docs = ["pygments-github-lexers (>=0.0.5)", "sphinx (>=2.0.0)", "sphinxcontrib-a
 testing = ["flaky (>=3.4.0)", "freezegun (>=0.3.11)", "psutil (>=5.6.1)", "pytest (>=4.0.0)", "pytest-cov (>=2.5.1)", "pytest-mock (>=1.10.0)", "pytest-randomly (>=1.0.0)", "pytest-xdist (>=1.22.2)", "pathlib2 (>=2.3.3)"]
 
 [[package]]
-name = "trove-classifiers"
-version = "2021.10.20"
-description = "Canonical source for classifiers on PyPI (pypi.org)."
-category = "main"
-optional = false
-python-versions = "*"
-
-[[package]]
 name = "typed-ast"
 version = "1.4.3"
 description = "a fork of Python 2 and 3 ast modules with type comment support"
@@ -813,7 +654,7 @@ python-versions = "*"
 name = "urllib3"
 version = "1.26.7"
 description = "HTTP library with thread-safe connection pooling, file post, and more."
-category = "main"
+category = "dev"
 optional = false
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*, <4"
 
@@ -854,7 +695,7 @@ python-versions = "!=3.0.*,!=3.1.*,!=3.2.*,!=3.3.*,!=3.4.*,>=2.7"
 name = "zipp"
 version = "3.6.0"
 description = "Backport of pathlib-compatible object wrapper for zip files"
-category = "main"
+category = "dev"
 optional = false
 python-versions = ">=3.6"
 
@@ -865,28 +706,16 @@ testing = ["pytest (>=4.6)", "pytest-checkdocs (>=2.4)", "pytest-flake8", "pytes
 [metadata]
 lock-version = "1.1"
 python-versions = ">=3.7, <4.0"
-content-hash = "2a6ea8537495c2cfc1901daa0e2d418eaf67f40de22b5d964b873ed7e6be7daa"
+content-hash = "f62840723f37e9e72222e908605a6bbeb0b195b653563392d3ba094d32b121b3"
 
 [metadata.files]
 alabaster = [
     {file = "alabaster-0.7.12-py2.py3-none-any.whl", hash = "sha256:446438bdcca0e05bd45ea2de1668c1d9b032e1a9154c2c259092d77031ddd359"},
     {file = "alabaster-0.7.12.tar.gz", hash = "sha256:a661d72d58e6ea8a57f7a86e37d86716863ee5e92788398526d58b26a4e4dc02"},
 ]
-apeye = [
-    {file = "apeye-1.1.0-py3-none-any.whl", hash = "sha256:8c6d31a5e6de7b355fb6d40ce75215c06d6b434f11f2c2813e5712198ff8cf85"},
-    {file = "apeye-1.1.0.tar.gz", hash = "sha256:acf9211a5ef81c12758eaddf3284537111fe5bb038b29133ff18053b8186eead"},
-]
-appdirs = [
-    {file = "appdirs-1.4.4-py2.py3-none-any.whl", hash = "sha256:a841dacd6b99318a741b166adb07e19ee71a274450e68237b4650ca1055ab128"},
-    {file = "appdirs-1.4.4.tar.gz", hash = "sha256:7d5d0167b2b1ba821647616af46a749d1c653740dd0d2415100fe26e27afdf41"},
-]
 astroid = [
     {file = "astroid-2.8.4-py3-none-any.whl", hash = "sha256:0755c998e7117078dcb7d0bda621391dd2a85da48052d948c7411ab187325346"},
     {file = "astroid-2.8.4.tar.gz", hash = "sha256:1e83a69fd51b013ebf5912d26b9338d6643a55fec2f20c787792680610eed4a2"},
-]
-attrs = [
-    {file = "attrs-21.2.0-py2.py3-none-any.whl", hash = "sha256:149e90d6d8ac20db7a955ad60cf0e6881a3f20d37096140088356da6c716b0b1"},
-    {file = "attrs-21.2.0.tar.gz", hash = "sha256:ef6aaac3ca6cd92904cdd0d83f629a15f18053ec84e6432106f7a4d04ae4f5fb"},
 ]
 babel = [
     {file = "Babel-2.9.1-py2.py3-none-any.whl", hash = "sha256:ab49e12b91d937cd11f0b67cb259a57ab4ad2b59ac7a3b41d6c06c0ac5b0def9"},
@@ -920,10 +749,6 @@ colorama = [
     {file = "colorama-0.4.4-py2.py3-none-any.whl", hash = "sha256:9f47eda37229f68eee03b24b9748937c7dc3868f906e8ba69fbcbdd3bc5dc3e2"},
     {file = "colorama-0.4.4.tar.gz", hash = "sha256:5941b2b48a20143d2267e95b1c2a7603ce057ee39fd88e7329b0c292aa16869b"},
 ]
-dist-meta = [
-    {file = "dist-meta-0.3.2.tar.gz", hash = "sha256:ac710c809cd68dc25d30a51eacd391b8a2b49a71a7cf1e80b5af9a3c98257735"},
-    {file = "dist_meta-0.3.2-py3-none-any.whl", hash = "sha256:28ba6c9e22a6559f13767d6da16231869cd36596ec138c867b8cb9051690e1b3"},
-]
 distlib = [
     {file = "distlib-0.3.3-py2.py3-none-any.whl", hash = "sha256:c8b54e8454e5bf6237cc84c20e8264c3e991e824ef27e8f1e81049867d861e31"},
     {file = "distlib-0.3.3.zip", hash = "sha256:d982d0751ff6eaaab5e2ec8e691d949ee80eddf01a62eaa96ddb11531fe16b05"},
@@ -932,14 +757,6 @@ docutils = [
     {file = "docutils-0.17.1-py2.py3-none-any.whl", hash = "sha256:cf316c8370a737a022b72b56874f6602acf974a37a9fba42ec2876387549fc61"},
     {file = "docutils-0.17.1.tar.gz", hash = "sha256:686577d2e4c32380bb50cbb22f575ed742d58168cee37e99117a854bcd88f125"},
 ]
-dom-toml = [
-    {file = "dom_toml-0.5.0-py3-none-any.whl", hash = "sha256:a5063ce7b0880952968fa8eadbc1b742314b78ee5b5282a41294f860fe07d857"},
-    {file = "dom_toml-0.5.0.tar.gz", hash = "sha256:16bcc6163fa0f7e484df555280f8b7a203f92c579905172073b52bb218d0f17d"},
-]
-domdf-python-tools = [
-    {file = "domdf-python-tools-3.1.0.tar.gz", hash = "sha256:c55b356a87d53841400ea0aa03346eee2be2c29f67adfdaabc8e4fdf41a8998f"},
-    {file = "domdf_python_tools-3.1.0-py3-none-any.whl", hash = "sha256:2a50d992f705a9e68d653f877267d007baeea7e6f95614ab68bd9ca57f7f7ba0"},
-]
 filelock = [
     {file = "filelock-3.3.2-py3-none-any.whl", hash = "sha256:bb2a1c717df74c48a2d00ed625e5a66f8572a3a30baacb7657add1d7bac4097b"},
     {file = "filelock-3.3.2.tar.gz", hash = "sha256:7afc856f74fa7006a289fd10fa840e1eebd8bbff6bffb69c26c54a0512ea8cf8"},
@@ -947,10 +764,6 @@ filelock = [
 flake8 = [
     {file = "flake8-4.0.1-py2.py3-none-any.whl", hash = "sha256:479b1304f72536a55948cb40a32dce8bb0ffe3501e26eaf292c7e60eb5e0428d"},
     {file = "flake8-4.0.1.tar.gz", hash = "sha256:806e034dda44114815e23c16ef92f95c91e4c71100ff52813adf7132a6ad870d"},
-]
-handy-archives = [
-    {file = "handy_archives-0.1.0-py3-none-any.whl", hash = "sha256:0407437ad712b3ed3579b60abb5729d4886a2c5ed5260007b79c56fbaa040c62"},
-    {file = "handy_archives-0.1.0.tar.gz", hash = "sha256:37d8e6861266404019591b73902427b9132c4077d530f38f680fbd9541c44b2d"},
 ]
 identify = [
     {file = "identify-2.3.5-py2.py3-none-any.whl", hash = "sha256:ba945bddb4322394afcf3f703fa68eda08a6acc0f99d9573eb2be940aa7b9bba"},
@@ -1104,10 +917,6 @@ mypy-extensions = [
     {file = "mypy_extensions-0.4.3-py2.py3-none-any.whl", hash = "sha256:090fedd75945a69ae91ce1303b5824f428daf5a028d2f6ab8a299250a846f15d"},
     {file = "mypy_extensions-0.4.3.tar.gz", hash = "sha256:2d82818f5bb3e369420cb3c4060a7970edba416647068eb4c5343488a6c604a8"},
 ]
-natsort = [
-    {file = "natsort-8.0.0-py3-none-any.whl", hash = "sha256:5f5f4ea471d655b1b1611eef1cf0c6d3397095d2d3a1aab7098d6a50e4c3901a"},
-    {file = "natsort-8.0.0.tar.gz", hash = "sha256:a0a4fd71aee20a6d648da61e01180a63f7268e69983d0440bd3ad80ef1ba6981"},
-]
 nodeenv = [
     {file = "nodeenv-1.6.0-py2.py3-none-any.whl", hash = "sha256:621e6b7076565ddcacd2db0294c0381e01fd28945ab36bcf00f41c5daf63bef7"},
     {file = "nodeenv-1.6.0.tar.gz", hash = "sha256:3ef13ff90291ba2a4a7a4ff9a979b63ffdd00a464dbe04acf0ea6471517a4c2b"},
@@ -1155,10 +964,6 @@ pylint = [
 pyparsing = [
     {file = "pyparsing-2.4.7-py2.py3-none-any.whl", hash = "sha256:ef9d7589ef3c200abe66653d3f1ab1033c3c419ae9b9bdb1240a85b024efc88b"},
     {file = "pyparsing-2.4.7.tar.gz", hash = "sha256:c203ec8783bf771a155b207279b9bccb8dea02d8f0c9e5f8ead507bc3246ecc1"},
-]
-pyproject-parser = [
-    {file = "pyproject-parser-0.4.2.tar.gz", hash = "sha256:fc7c9feab5d2362b28ab0a3ef12cace52f6a6f6b3cc6bb4eb1b4b5f9c81bef68"},
-    {file = "pyproject_parser-0.4.2-py3-none-any.whl", hash = "sha256:aa92513c3f6990a0c413a555205d83f13d76b9d7b956c6075f8157c9bf32d7f9"},
 ]
 pytz = [
     {file = "pytz-2021.3-py2.py3-none-any.whl", hash = "sha256:3672058bc3453457b622aab7a1c3bfd5ab0bdae451512f6cf25f64ed37f5b87c"},
@@ -1258,10 +1063,6 @@ requirements-parser = [
     {file = "requirements-parser-0.2.0.tar.gz", hash = "sha256:5963ee895c2d05ae9f58d3fc641082fb38021618979d6a152b6b1398bd7d4ed4"},
     {file = "requirements_parser-0.2.0-py2-none-any.whl", hash = "sha256:76650b4a9d98fc65edf008a7920c076bb2a76c08eaae230ce4cfc6f51ea6a773"},
 ]
-shippinglabel = [
-    {file = "shippinglabel-1.0.0-py3-none-any.whl", hash = "sha256:a3632b29d18c75d8d58578a0506b6e8394c2e8251599c4f26897b50e21354efb"},
-    {file = "shippinglabel-1.0.0.tar.gz", hash = "sha256:68eb11f0d6eb1fba30857362332880fd5a1b491d6424d5f1363d7de909fa7f9d"},
-]
 six = [
     {file = "six-1.16.0-py2.py3-none-any.whl", hash = "sha256:8abb2f1d86890a2dfb989f9a77cfcfd3e47c2a354b01111771326f8aa26e0254"},
     {file = "six-1.16.0.tar.gz", hash = "sha256:1e61c37477a1626458e36f7b1d82aa5c9b094fa4802892072e49de9c60c4c926"},
@@ -1313,10 +1114,6 @@ tomli = [
 tox = [
     {file = "tox-3.24.4-py2.py3-none-any.whl", hash = "sha256:5e274227a53dc9ef856767c21867377ba395992549f02ce55eb549f9fb9a8d10"},
     {file = "tox-3.24.4.tar.gz", hash = "sha256:c30b57fa2477f1fb7c36aa1d83292d5c2336cd0018119e1b1c17340e2c2708ca"},
-]
-trove-classifiers = [
-    {file = "trove-classifiers-2021.10.20.tar.gz", hash = "sha256:519bc78fec00cd6e7c18458d7b7e8a5c1fabbc9b698366c1a1791a2dbc3f971f"},
-    {file = "trove_classifiers-2021.10.20-py3-none-any.whl", hash = "sha256:67efbf29beb833a6521f74bdb2b84ccac08883b2e0ace9c50a9fee28e1326783"},
 ]
 typed-ast = [
     {file = "typed_ast-1.4.3-cp35-cp35m-manylinux1_i686.whl", hash = "sha256:2068531575a125b87a41802130fa7e29f26c09a2833fea68d9a40cf33902eba6"},

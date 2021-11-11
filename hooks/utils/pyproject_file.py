@@ -2,7 +2,7 @@
 this module provides the utility to do so easily.
 """
 
-from pyproject_parser import PyProject
+import toml
 
 from .config_file import ConfigFile
 
@@ -14,14 +14,14 @@ class PyprojectFile(ConfigFile):
 
     def __init__(self, path: str) -> None:
         super().__init__(path, "pyproject.toml")
-        self.contents = PyProject.load(self.path)
+        self.contents = toml.load(self.path)
 
     @property
     def package_name(self) -> str:
-        return str(self.contents.tool["poetry"]["name"])
+        return str(self.contents["tool"]["poetry"]["name"])
 
     def add_mypy_ignore(self, bad_imports):
-        self.contents.tool["mypy"]["overrides"][0]["module"].append(bad_imports)
+        self.contents["tool"]["mypy"]["overrides"][0]["module"].append(bad_imports)
 
     def add_pylint_ignore(self, bad_imports):
         return NotImplementedError
