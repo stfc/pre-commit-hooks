@@ -76,6 +76,7 @@ class CheckMypyImportErrors(Hook):  # pylint: disable=too-few-public-methods
             if "found module but no type hints" in line
             or "Cannot find implementation or library stub for module named" in line
             or "No library stub file for module" in line
+            or "Library stubs not installed for" in line
         }
         if not bad_imports:
             print("  No mypy import errors found")

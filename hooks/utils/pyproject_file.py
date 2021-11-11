@@ -9,7 +9,7 @@ from .config_file import ConfigFile
 
 class PyprojectFile(ConfigFile):
     """Setup file object to include custom functionality within our hooks
-    specific to a ``setup.cfg`` file.
+    specific to a ``pyproject.toml`` file.
     """
 
     def __init__(self, path: str) -> None:
@@ -34,4 +34,4 @@ class PyprojectFile(ConfigFile):
             ] = bad_imports
 
     def save_to_disk(self):
-        self.contents.dump(self.path)
+        self.path.write_text(toml.dumps(self.contents))
