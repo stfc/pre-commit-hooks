@@ -18,7 +18,7 @@ class PyprojectFile(ConfigFile):
 
     @property
     def package_name(self) -> str:
-        return self.contents.tool["poetry"]["name"]
+        return str(self.contents.tool["poetry"]["name"])
 
     def add_mypy_ignore(self, bad_imports):
         self.contents.tool["mypy"]["overrides"][0]["module"].append(bad_imports)

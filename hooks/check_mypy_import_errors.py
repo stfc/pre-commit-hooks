@@ -1,6 +1,7 @@
 """Check and prevent mypy import errors."""
 import sys
 import warnings
+from typing import Optional
 
 from mypy import api as mypy
 
@@ -46,7 +47,7 @@ class CheckMypyImportErrors(Hook):  # pylint: disable=too-few-public-methods
         Raises:
             Exception: if mypy fails to run
         """
-        setup_file: ConfigFile = None
+        setup_file: Optional[ConfigFile] = None
         for filename in self.args.filenames:
             if "pyproject.toml" in filename:
                 setup_file = PyprojectFile(filename)
