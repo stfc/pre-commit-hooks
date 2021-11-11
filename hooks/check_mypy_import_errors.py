@@ -59,7 +59,7 @@ class CheckMypyImportErrors(Hook):  # pylint: disable=too-few-public-methods
         # "<location>: error: Cannot find implementation or library stub for module
         # named 'pyodbc'")
         bad_imports = {
-            line.split("'")[1]
+            line.split(('"' if '"' in line else "'"))[1]
             for line in mypy_stdout.split("\n")
             if "found module but no type hints" in line
             or "Cannot find implementation or library stub for module named" in line
