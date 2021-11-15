@@ -2,27 +2,21 @@
 this module provides the utility to do so easily.
 """
 
-from pathlib import Path
-from typing import Any, List, Set, Union
+from typing import List, Set, Union
 
 import regex as re
 
+from .config_file import ConfigFile
 
-class SetupFile:
+
+class SetupFile(ConfigFile):
     """Setup file object to include custom functionality within our hooks
     specific to a ``setup.cfg`` file.
     """
 
     def __init__(self, path: str) -> None:
-        self.path = Path(path)
-        if self.path.name != "setup.cfg":
-            raise ValueError(f"not a setup.cfg file: {path}")
+        super().__init__(path, "setup.cfg")
         self.contents = self.path.read_text()
-
-    def __getattr__(self, attr: str) -> Any:
-        """Wraps ``pathlib.Path`` attributes so this object can be treated like
-        a ``Path`` object where needed."""
-        return getattr(self.path, attr)
 
     @property
     def lines(self) -> List[str]:
@@ -38,7 +32,7 @@ class SetupFile:
             line.split(" ")[2] for line in self.lines if line.split(" ")[0] == "name"
         ][0]
 
-    def get_config_section(self, section_name: str, pattern: str = None) -> str:
+    def _get_config_section(self, section_name: str, pattern: str = None) -> str:
         """
         Finds a required configuration section by header
 
@@ -58,7 +52,7 @@ class SetupFile:
                 return str(section)
         raise Exception(f"Section not found: {section_name}")
 
-    def modify_section_line(
+    def _modify_section_line(
         self,
         section_name: str,
         line_start: str,
@@ -88,7 +82,7 @@ class SetupFile:
             )
         if not isinstance(line_end, str):
             line_end = ", ".join(line_end)
-        section = self.get_config_section(section_name)
+        section = self._get_config_section(section_name)
         match = re.search(fr"({line_start}[^\n]+\n)", section)
         if match:
             if mode.lower() == "append":
@@ -98,5 +92,45 @@ class SetupFile:
             new_section = section.replace(match.group(0), new_line)
         else:
             new_section = section.rstrip("\n") + "\n" + line_start + line_end + "\n\n"
-        self.write_text(self.contents.replace(section, new_section))
+        self.contents.replace(section, new_section)
         return
+
+    def add_mypy_ignore(self, bad_imports):
+        def _generate_mypy_ignores(bad_modules: Union[str, Set[str]]) -> str:
+            """Prepares setup.cfg entries to tell mypy to ignore a specific module
+            or modules.
+
+            Args:
+                bad_modules (Union[str, List[str]]): One or more bad modules,
+                    extracted from mypy stdout
+
+            Returns:
+                str: new content to append to setup.cfg to silence the mypy errors
+            """
+            if isinstance(bad_modules, str):
+                bad_modules = set([bad_modules])
+            new_content = "\n".join(
+                {
+                    "\n".join([f"[mypy-{item}]", "ignore_missing_imports = True\n"])
+                    for item in bad_modules
+                }
+            )
+            return new_content
+
+        # generate new config file contents by appending any required ignore
+        # statements:
+        new_config = "\n".join([self.contents, _generate_mypy_ignores(bad_imports)])
+        self.contents = new_config
+
+    def add_pylint_ignore(self, bad_imports):
+
+        self._modify_section_line(
+            section_name="[pylint]",
+            line_start="ignored_modules = ",
+            line_end=bad_imports,
+            mode="append",
+        )
+
+    def save_to_disk(self) -> None:
+        """Saves the (updated) contents of this config file back to disk."""
+        self.path.write_text(self.contents)

@@ -2,10 +2,12 @@
 
 import json
 import sys
+from typing import Optional
 
 from pylint import epylint as lint
 
-from .utils import Hook, SetupFile
+from .utils import Hook, PyprojectFile, SetupFile
+from .utils.config_file import ConfigFile
 
 
 class CheckPylintImportErrors(Hook):  # pylint: disable=too-few-public-methods
@@ -31,13 +33,23 @@ class CheckPylintImportErrors(Hook):  # pylint: disable=too-few-public-methods
         Raises:
             Exception: if pylint fails to run
         """
-        setup_file = SetupFile("setup.cfg")
+        setup_file: Optional[ConfigFile] = None
+        for filename in self.args.filenames:
+            if "pyproject.toml" in filename:
+                setup_file = PyprojectFile(filename)
+                break
+            elif "setup.cfg" in filename:
+                setup_file = SetupFile("setup.cfg")
+
+        if not setup_file:
+            print("  No setup file found")
+            return 0
+
         # set some pylint options to match the CI pipeline and use the output here:
         pylint_opts = " ".join(
             [
-                "setup.py",  # lint setup.py
                 setup_file.package_name,  # lint package files
-                "--rcfile='setup.cfg'",  # use local config file
+                f"--rcfile='{setup_file.path}'",  # use local config file
                 " --output-format=json",  # return json dict for subsequent parsing
             ]
         )
@@ -67,12 +79,8 @@ class CheckPylintImportErrors(Hook):  # pylint: disable=too-few-public-methods
         )
 
         # add bad modules to the pylint ignore section:
-        setup_file.modify_section_line(
-            section_name="[pylint]",
-            line_start="ignored_modules = ",
-            line_end=bad_imports,
-            mode="append",
-        )
+        setup_file.add_pylint_ignore(bad_imports)
+        setup_file.save_to_disk()
         return 1
 
 
