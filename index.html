@@ -82,10 +82,22 @@
 <h1>Pre-commit hooks<a class="headerlink" href="#pre-commit-hooks" title="Permalink to this headline"></a></h1>
 <p>Hartree Centre pre-commit hooks to use across multiple projects - these have
 been developed to hopefully make life simpler, so please raise an issue on
-<a class="reference external" href="https://gitlab.stfc.ac.uk/HDS/pre-commit-hooks">our repository</a>
+<a class="reference external" href="https://github.com/stfc/pre-commit-hooks">our repository</a>
 if you’re finding they’re more hassle than you’d like!</p>
 <p>Documentation for our current hooks are available on the left hand side of
 this page.</p>
+<p>example configuration:</p>
+<div class="literal-block-wrapper docutils container" id="id1">
+<div class="code-block-caption"><span class="caption-text">.pre-commit-config.yaml</span><a class="headerlink" href="#id1" title="Permalink to this code"></a></div>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">repos</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">repo</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://github.com/stfc/pre-commit-hooks</span><span class="w"></span>
+<span class="w">      </span><span class="nt">rev</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v0.3.1</span><span class="w"></span>
+<span class="w">      </span><span class="nt">hooks</span><span class="p">:</span><span class="w"></span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">check-mypy-import-errors</span><span class="w"></span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">check-pylint-import-errors</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
 <p>TODO: add a worked example of creating a new hook</p>
 <p>TODO: add instructions on how to use these hooks within pre-commit-config.yaml</p>
 <div class="toctree-wrapper compound">
