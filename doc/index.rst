@@ -10,6 +10,18 @@ if you're finding they're more hassle than you'd like!
 Documentation for our current hooks are available on the left hand side of
 this page.
 
+example configuration:
+
+.. code-block:: yaml
+  :caption: .pre-commit-config.yaml
+
+  repos:
+      - repo: https://github.com/stfc/pre-commit-hooks
+        rev: v0.3.0
+        hooks:
+          - id: check-mypy-import-errors
+          - id: check-pylint-import-errors
+
 TODO: add a worked example of creating a new hook
 
 TODO: add instructions on how to use these hooks within pre-commit-config.yaml
