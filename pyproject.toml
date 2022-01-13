@@ -4,7 +4,7 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.poetry]
 name = "hooks"
-version = "0.1.0"
+version = "0.3.0"
 description = "Custom pre-commit hooks for use within our projects"
 authors = [ "Tom Collingwood <tom.collingwood@stfc.ac.uk>",]
 license = "MIT"
@@ -35,7 +35,7 @@ check-pylint-import-errors = "hooks.check_pylint_import_errors:main"
 [tool.poetry.dependencies]
 # mandatory dependencies
 python = ">=3.7, <4.0"
-mypy = "^0.910"
+mypy = ">=0.910"
 mypy-extensions = "^0.4.3"
 regex = "^2021.11.10"
 requirements-parser = "^0.2.0"
