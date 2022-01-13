@@ -4,7 +4,7 @@ Pre-commit hooks
 
 Hartree Centre pre-commit hooks to use across multiple projects - these have
 been developed to hopefully make life simpler, so please raise an issue on
-`our repository <https://gitlab.stfc.ac.uk/HDS/pre-commit-hooks>`_
+`our repository <https://github.com/stfc/pre-commit-hooks>`_
 if you're finding they're more hassle than you'd like!
 
 Documentation for our current hooks are available on the left hand side of

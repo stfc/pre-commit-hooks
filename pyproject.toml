@@ -8,7 +8,7 @@ version = "0.3.0"
 description = "Custom pre-commit hooks for use within our projects"
 authors = [ "Tom Collingwood <tom.collingwood@stfc.ac.uk>",]
 license = "MIT"
-repository = "https://gitlab.stfc.ac.uk/HDS/pre-commit-hooks"
+repository = "https://github.com/stfc/pre-commit-hooks"
 keywords = [ "pre-commit", "hooks",]
 
 [tool.mypy]
