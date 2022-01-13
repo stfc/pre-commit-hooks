@@ -1,4 +1,4 @@
-"""Check and prevent mypy import errors."""
+"""Check and prevent mypy errors due to missing stubs."""
 import sys
 import warnings
 from typing import Optional
@@ -28,6 +28,9 @@ warnings.showwarning = _warning
 class CheckMypyImportErrors(Hook):  # pylint: disable=too-few-public-methods
     """Hook to check whether mypy will raise import errors using the current
     project configuration, and fix the config file if necessary.
+
+    This is configured to only run when changes to your `requirements.txt` or
+    `pyproject.toml` file are staged.
     """
 
     def run(self) -> int:
@@ -84,7 +87,7 @@ class CheckMypyImportErrors(Hook):  # pylint: disable=too-few-public-methods
 
         print(
             "  import errors found!\n",
-            f"  adding new exceptions to setup.cfg: {', '.join(bad_imports)}",
+            f"  adding new exceptions to config file: {', '.join(bad_imports)}",
         )
         setup_file.add_mypy_ignore(bad_imports)
         setup_file.save_to_disk()

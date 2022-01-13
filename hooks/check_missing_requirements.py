@@ -1,5 +1,5 @@
 """Checks to see if the package requirements are all present in the current
-environment.
+python environment.
 """
 import subprocess
 import sys

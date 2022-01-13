@@ -13,19 +13,21 @@ from .utils.config_file import ConfigFile
 class CheckPylintImportErrors(Hook):  # pylint: disable=too-few-public-methods
     """Hook to check whether pylint will raise import errors using the current
     project configuration, and fix the config file if necessary.
+
+    This is configured to only run when changes to your `requirements.txt` or
+    `pyproject.toml` file are staged.
     """
 
     def run(self) -> int:
         """
-        Fixes pylint parameters in ``setup.cfg`` to prevent the CI pipeline giving
-        import errors during linting jobs, as not all packages provide pylint
-        support. This function should be run from within the top level repo
-        directory.
+        Fixes pylint parameters to prevent the CI pipeline giving import errors
+        during linting jobs, as not all packages provide pylint support. This
+        function should be run from within the top level repo directory.
 
         The function applies pylint to this repo, and greps the resultant output
         for any import error (E0401) messages. The function will then append
-        the bad package/module names to the ``[pylint]`` section of ``setup.cfg``
-        to silence the error in future.
+        the bad package/module names to the relevant config section to silence
+        the error in future.
 
         This is a known bug with pylint and in this case, silencing the errors
         is the only fix to prevent CI job failure.
@@ -75,7 +77,7 @@ class CheckPylintImportErrors(Hook):  # pylint: disable=too-few-public-methods
 
         print(
             "  Pylint import errors found!\n",
-            f"  adding new exceptions to setup.cfg: {', '.join(bad_imports)}",
+            f"  adding new exceptions to config file: {', '.join(bad_imports)}",
         )
 
         # add bad modules to the pylint ignore section:
