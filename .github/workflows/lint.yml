@@ -1,6 +1,11 @@
 name: lint
 
-on: [push, merge]
+on:
+  push:
+    tags: "*"
+  pull_request:
+    branches:
+      - master
 
 jobs:
   lint:
