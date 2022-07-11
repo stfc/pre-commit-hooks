@@ -126,7 +126,7 @@ class SetupFile(ConfigFile):
 
         self._modify_section_line(
             section_name="[pylint]",
-            line_start="ignored_modules = ",
+            line_start="ignored-modules = ",
             line_end=bad_imports,
             mode="append",
         )
