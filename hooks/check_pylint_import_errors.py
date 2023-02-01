@@ -5,6 +5,7 @@ import sys
 from typing import Optional
 
 from pylint import epylint as lint
+from pylint.lint import Run
 
 from .utils import Hook, PyprojectFile, SetupFile
 from .utils.config_file import ConfigFile
