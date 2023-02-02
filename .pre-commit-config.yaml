@@ -2,7 +2,7 @@
 # See https://pre-commit.com/hooks.html for more hooks
 repos:
     - repo: https://github.com/stfc/pre-commit-hooks
-      rev: hotfix-pylint-version-to-avoid-breaking-exception
+      rev: 0.3.3
       hooks:
         - id: check-mypy-import-errors
         - id: check-pylint-import-errors
