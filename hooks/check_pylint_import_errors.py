@@ -4,8 +4,10 @@ import json
 import sys
 from typing import Optional
 
-from pylint import epylint as lint
+from io import StringIO
+
 from pylint.lint import Run
+from pylint.reporters.text import TextReporter
 
 from .utils import Hook, PyprojectFile, SetupFile
 from .utils.config_file import ConfigFile
