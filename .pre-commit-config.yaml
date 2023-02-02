@@ -2,12 +2,12 @@
 # See https://pre-commit.com/hooks.html for more hooks
 repos:
     - repo: https://github.com/stfc/pre-commit-hooks
-      rev: v0.3.0
+      rev: hotfix-pylint-version-to-avoid-breaking-exception
       hooks:
         - id: check-mypy-import-errors
         - id: check-pylint-import-errors
     - repo: https://github.com/pre-commit/pre-commit-hooks
-      rev: v4.0.1
+      rev: v4.2.0
       hooks:
         - id: check-toml
         - id: check-yaml
@@ -26,15 +26,15 @@ repos:
           files: ^.+$(?<!\.jpg)(?<!\.png)(?<!\.ipynb)(?<!\.bmp)(?<!\.tif)
           args: [ '--maxkb=500' ]
     - repo: https://github.com/psf/black
-      rev: 21.6b0
+      rev: 22.12.0
       hooks:
         - id: black
           language_version: python3
     - repo: https://github.com/pycqa/isort
-      rev: 5.9.1
+      rev: 5.10.1
       hooks:
         - id: isort
-    - repo: https://gitlab.com/pycqa/flake8
+    - repo: https://github.com/pycqa/flake8
       rev: 3.9.2
       hooks:
         - id: flake8
