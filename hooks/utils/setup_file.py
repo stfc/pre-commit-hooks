@@ -83,7 +83,7 @@ class SetupFile(ConfigFile):
         if not isinstance(line_end, str):
             line_end = ", ".join(line_end)
         section = self._get_config_section(section_name)
-        match = re.search(fr"({line_start}[^\n]+\n)", section)
+        match = re.search(rf"({line_start}[^\n]+\n)", section)
         if match:
             if mode.lower() == "append":
                 new_line = match.group(0).rstrip("\n") + ", " + line_end + "\n"
