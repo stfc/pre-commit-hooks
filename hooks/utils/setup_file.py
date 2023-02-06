@@ -2,7 +2,7 @@
 this module provides the utility to do so easily.
 """
 
-from typing import List, Set, Union
+from typing import List, Optional, Set, Union
 
 import regex as re
 
@@ -32,7 +32,9 @@ class SetupFile(ConfigFile):
             line.split(" ")[2] for line in self.lines if line.split(" ")[0] == "name"
         ][0]
 
-    def _get_config_section(self, section_name: str, pattern: str = None) -> str:
+    def _get_config_section(
+        self, section_name: str, pattern: Optional[str] = None
+    ) -> str:
         """
         Finds a required configuration section by header
 
@@ -83,7 +85,7 @@ class SetupFile(ConfigFile):
         if not isinstance(line_end, str):
             line_end = ", ".join(line_end)
         section = self._get_config_section(section_name)
-        match = re.search(fr"({line_start}[^\n]+\n)", section)
+        match = re.search(rf"({line_start}[^\n]+\n)", section)
         if match:
             if mode.lower() == "append":
                 new_line = match.group(0).rstrip("\n") + ", " + line_end + "\n"
