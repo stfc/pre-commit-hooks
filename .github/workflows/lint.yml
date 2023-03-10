@@ -27,7 +27,7 @@ jobs:
 
       - name: Permacache Poetry
         id: cache-poetry
-        uses: actions/cache@v2.1.6
+        uses: actions/cache@v3
         with:
           path: ~/.poetry
           key: poetry
@@ -36,6 +36,7 @@ jobs:
         if: steps.cache-poetry.outputs.cache-hit != 'true'
         run: |
           POETRY_VERSION=$POETRY_VERSION curl -sSL https://install.python-poetry.org | python3 -
+          poetry version
 
       - name: Add Poetry to $PATH
         run: |
