@@ -9,7 +9,7 @@ env:
 jobs:
   lint:
     name: Run linting tools
-    runs-on: "ubuntu-20.04"
+    runs-on: "ubuntu-latest"
     steps:
       - name: Checkout code
         uses: actions/checkout@master
@@ -22,7 +22,7 @@ jobs:
       - name: Setup Python
         uses: actions/setup-python@v4
         with:
-          python-version: "3.9"
+          python-version: ${{env.PYTHON_VERSION}}
 
 
       - name: Permacache Poetry
