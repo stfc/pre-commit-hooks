@@ -12,7 +12,7 @@ jobs:
     runs-on: "ubuntu-latest"
     steps:
       - name: Checkout code
-        uses: actions/checkout@master
+        uses: actions/checkout@v3
         with:
           fetch-depth: 0
 
@@ -64,8 +64,7 @@ jobs:
 
       - name: Lint code
         run: |
-          poetry run pylint --errors-only hooks
-          poetry run flake8 hooks
           poetry run isort --check hooks
           poetry run black --check --diff .
+          poetry run ruff check hooks
           poetry run mypy hooks
