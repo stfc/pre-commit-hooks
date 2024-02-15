@@ -2,7 +2,7 @@
 # See https://pre-commit.com/hooks.html for more hooks
 repos:
     - repo: https://github.com/stfc/pre-commit-hooks
-      rev: v0.3.5
+      rev: v0.3.6
       hooks:
         - id: check-mypy-import-errors
         - id: check-pylint-import-errors
