@@ -15,8 +15,9 @@ keywords = [ "pre-commit", "hooks",]
 warn_return_any = true
 warn_unused_configs = true
 warn_redundant_casts = true
+
 [[tool.mypy.overrides]]
-module = [ "regex", "pylint", "requirements", "toml",]
+module = [ "regex", "pylint", "pylint.reporters", "pylint.lint",  "requirements", "toml",]
 ignore_missing_imports = true
 
 [tool.isort]
