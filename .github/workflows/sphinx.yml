@@ -1,11 +1,6 @@
 name: sphinx
 
-on:
-  push:
-    tags: "*"
-  pull_request:
-    branches:
-      - master
+on: push
 
 env:
   POETRY_VERSION: "1.3.1"
