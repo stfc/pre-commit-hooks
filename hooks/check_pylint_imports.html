@@ -27,12 +27,16 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search"  style="background: #007681" >
-            <a href="../index.html">
-            <img src="../_static/hartree_logo.png" class="logo" alt="Logo"/>
+
+          
+          
+          <a href="../index.html">
+            
+              <img src="../_static/hartree_logo.png" class="logo" alt="Logo"/>
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -66,8 +70,8 @@
         <div class="rst-content style-external-links">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>Check Pylint Import Errors</li>
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Check Pylint Import Errors</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/hooks/check_pylint_imports.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -80,43 +84,8 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="module-hooks.check_pylint_import_errors">
-<span id="check-pylint-import-errors"></span><h1>Check Pylint Import Errors<a class="headerlink" href="#module-hooks.check_pylint_import_errors" title="Permalink to this headline"></a></h1>
-<p>Check and prevent pylint import errors.</p>
-<dl class="py class">
-<dt class="sig sig-object py" id="hooks.check_pylint_import_errors.CheckPylintImportErrors">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hooks.check_pylint_import_errors.</span></span><span class="sig-name descname"><span class="pre">CheckPylintImportErrors</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">argv</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hooks.check_pylint_import_errors.CheckPylintImportErrors" title="Permalink to this definition"></a></dt>
-<dd><p>Hook to check whether pylint will raise import errors using the current
-project configuration, and fix the config file if necessary.</p>
-<p>This is configured to only run when changes to your <cite>requirements.txt</cite> or
-<cite>pyproject.toml</cite> file are staged.</p>
-<dl class="py method">
-<dt class="sig sig-object py" id="hooks.check_pylint_import_errors.CheckPylintImportErrors.run">
-<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="headerlink" href="#hooks.check_pylint_import_errors.CheckPylintImportErrors.run" title="Permalink to this definition"></a></dt>
-<dd><p>Fixes pylint parameters to prevent the CI pipeline giving import errors
-during linting jobs, as not all packages provide pylint support. This
-function should be run from within the top level repo directory.</p>
-<p>The function applies pylint to this repo, and greps the resultant output
-for any import error (E0401) messages. The function will then append
-the bad package/module names to the relevant config section to silence
-the error in future.</p>
-<p>This is a known bug with pylint and in this case, silencing the errors
-is the only fix to prevent CI job failure.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Raises</dt>
-<dd class="field-odd"><p><strong>Exception</strong> – if pylint fails to run</p>
-</dd>
-</dl>
-</dd></dl>
-
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="hooks.check_pylint_import_errors.main">
-<span class="sig-prename descclassname"><span class="pre">hooks.check_pylint_import_errors.</span></span><span class="sig-name descname"><span class="pre">main</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#hooks.check_pylint_import_errors.main" title="Permalink to this definition"></a></dt>
-<dd><p>Hook entry point</p>
-</dd></dl>
-
+  <section id="check-pylint-import-errors">
+<h1>Check Pylint Import Errors<a class="headerlink" href="#check-pylint-import-errors" title="Permalink to this headline"></a></h1>
 </section>
 
 
