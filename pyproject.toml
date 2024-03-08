@@ -60,9 +60,9 @@ docs = ["Sphinx", "sphinx-rtd-theme"]
 
 [tool.ruff]
 line-length = 88
-extend-include = ["*.ipynb"]
 # Note: Ruff supports a top-level `src` option in lieu of isort's `src_paths` setting.
-src = ["raghack", "tests"]
+src = ["hooks"]
+
 
 [tool.ruff.lint]
 select = [
