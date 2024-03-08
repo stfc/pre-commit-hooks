@@ -35,7 +35,7 @@ check-pylint-import-errors = "hooks.check_pylint_import_errors:main"
 
 [tool.poetry.dependencies]
 # mandatory dependencies
-python = ">=3.7.2, <4.0"
+python = ">=3.8, <4.0"
 regex = "^2022.1.18"
 requirements-parser = "^0.2.0"
 toml = "^0.10.2"
@@ -47,6 +47,7 @@ jupyterlab-code-formatter = "^1.4.10"
 mypy = "^1.1.1"
 mypy-extensions = "^1.0.0"
 ruff = "^0.2.1"
+pylint = "^3.1.0"
 
 [tool.poetry.dev-dependencies]
 black = "^22.3.0"
