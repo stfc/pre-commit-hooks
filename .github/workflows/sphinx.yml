@@ -28,7 +28,7 @@ jobs:
         with:
           poetry-version: ${{ env.POETRY_VERSION }}
       - name: install
-        run: poetry install --extras docs
+        run: poetry install --with dev
 
       - name: Build documentation
         run: |
