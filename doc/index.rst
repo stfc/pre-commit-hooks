@@ -17,7 +17,7 @@ example configuration:
 
   repos:
       - repo: https://github.com/stfc/pre-commit-hooks
-        rev: v0.3.4
+        rev: v0.3.7
         hooks:
           - id: check-mypy-import-errors
           - id: check-pylint-import-errors

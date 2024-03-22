@@ -125,7 +125,6 @@ class SetupFile(ConfigFile):
         self.contents = new_config
 
     def add_pylint_ignore(self, bad_imports):
-
         self._modify_section_line(
             section_name="[pylint]",
             line_start="ignored-modules = ",

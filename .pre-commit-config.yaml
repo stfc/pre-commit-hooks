@@ -2,12 +2,12 @@
 # See https://pre-commit.com/hooks.html for more hooks
 repos:
     - repo: https://github.com/stfc/pre-commit-hooks
-      rev: v0.3.4
+      rev: v0.3.7
       hooks:
         - id: check-mypy-import-errors
         - id: check-pylint-import-errors
     - repo: https://github.com/pre-commit/pre-commit-hooks
-      rev: v4.2.0
+      rev: v4.5.0
       hooks:
         - id: check-toml
         - id: check-yaml
@@ -30,11 +30,12 @@ repos:
       hooks:
         - id: black
           language_version: python3
-    - repo: https://github.com/pycqa/isort
-      rev: 5.10.1
+    - repo: https://github.com/astral-sh/ruff-pre-commit
+      # Ruff version.
+      rev: v0.1.8
       hooks:
-        - id: isort
-    - repo: https://github.com/pycqa/flake8
-      rev: 3.9.2
-      hooks:
-        - id: flake8
+        # Run the linter.
+        - id: ruff
+          args: [ --fix ]
+        # Run the formatter.
+        - id: ruff-format
