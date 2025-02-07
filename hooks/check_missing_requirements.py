@@ -60,11 +60,13 @@ def _get_required_packages(filepath: str) -> List[str]:
     Returns:
         List of formatted names of installed packages
     """
-    return [
+    package_names = [
         _parse_package_name(req.name)
         for req in requirements.parse(Path(filepath).read_text())
         if req.name
     ]
+
+    return [name for name in package_names if name]
 
 
 class CheckMissingRequirements(Hook):  # pylint: disable=too-few-public-methods
