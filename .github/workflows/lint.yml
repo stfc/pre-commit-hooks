@@ -68,3 +68,7 @@ jobs:
           poetry run black --check --diff .
           poetry run ruff check hooks
           poetry run mypy hooks
+
+      - name: Test codee
+        run: |
+          poetry run pytest
