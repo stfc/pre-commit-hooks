@@ -6,7 +6,7 @@ build-backend = "poetry.core.masonry.api"
 name = "hooks"
 version = "0.3.8-alpha"
 description = "Custom pre-commit hooks for use within our projects"
-authors = [ "Tom Collingwood <tom.collingwood@stfc.ac.uk>","Rob Firth <rob.firth@stfc.ac.uk>"]
+authors = [ "Tom Collingwood <tom.collingwood@stfc.ac.uk>","Rob Firth <robert.firth@stfc.ac.uk>", "Alex Gregory <alex.g>"]
 license = "MIT"
 repository = "https://github.com/stfc/pre-commit-hooks"
 keywords = [ "pre-commit", "hooks",]
@@ -40,7 +40,6 @@ requirements-parser = "^0.2.0"
 toml = "^0.10.2"
 mypy = "^1.1.1"
 mypy-extensions = "^1.0.0"
-ruff = "^0.6.4"
 pylint = "^3.1.0"
 
 [tool.poetry.group.dev]
@@ -52,6 +51,7 @@ isort = "^5.10.1"
 pre-commit = "^2.15.0"
 tox = "^3.24.4"
 jupyterlab-code-formatter = "^1.4.10"
+ruff = "^0.6.4"
 Sphinx = "^4.2.0"
 sphinx-rtd-theme = "^1.0.0"
 
