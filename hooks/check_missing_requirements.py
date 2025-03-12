@@ -4,14 +4,14 @@ python environment.
 import subprocess
 import sys
 from pathlib import Path
-from typing import List
+from typing import List, Optional
 
 import requirements
 
 from .utils import Hook
 
 
-def _parse_package_name(name: str) -> str:
+def _parse_package_name(name: Optional[str]) -> Optional[str]:
     """
     Force lower case and replace underscore with dash to compare environment
     packages (see https://www.python.org/dev/peps/pep-0426/#name)
@@ -22,7 +22,7 @@ def _parse_package_name(name: str) -> str:
     Returns:
         Formatted package name
     """
-    return name.lower().replace("_", "-")
+    return name.lower().replace("_", "-") if name else None
 
 
 def _get_installed_packages() -> List[str]:
@@ -33,7 +33,7 @@ def _get_installed_packages() -> List[str]:
     Returns:
         List of formatted names of installed packages
     """
-    return [
+    package_names = [
         _parse_package_name(req.name)
         for req in requirements.parse(
             subprocess.check_output(
@@ -41,6 +41,8 @@ def _get_installed_packages() -> List[str]:
             ).decode()
         )
     ]
+
+    return [name for name in package_names if name]
 
 
 def _get_required_packages(filepath: str) -> List[str]:
@@ -58,11 +60,13 @@ def _get_required_packages(filepath: str) -> List[str]:
     Returns:
         List of formatted names of installed packages
     """
-    return [
+    package_names = [
         _parse_package_name(req.name)
         for req in requirements.parse(Path(filepath).read_text())
         if req.name
     ]
+
+    return [name for name in package_names if name]
 
 
 class CheckMissingRequirements(Hook):  # pylint: disable=too-few-public-methods
