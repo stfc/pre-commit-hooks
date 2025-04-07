@@ -4,7 +4,7 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.poetry]
 name = "hooks"
-version = "0.3.8"
+version = "0.3.9"
 description = "Custom pre-commit hooks for use within our projects"
 authors = [ "Tom Collingwood <tom.collingwood@stfc.ac.uk>","Rob Firth <robert.firth@stfc.ac.uk>", "Alex Gregory <alex.g>"]
 license = "MIT"
