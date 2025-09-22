@@ -18,7 +18,11 @@ class PyprojectFile(ConfigFile):
 
     @property
     def package_name(self) -> str:
-        return str(self.contents["tool"]["poetry"]["name"])
+        try:
+            name = str(self.contents["tool"]["poetry"]["name"])
+        except KeyError:
+            name = str(self.contents["project"]["name"])
+        return name
 
     def add_mypy_ignore(self, bad_imports):
         self.contents["tool"]["mypy"]["overrides"][0]["module"].extend(bad_imports)
